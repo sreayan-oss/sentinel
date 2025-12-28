@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package sentinel;
+option go_package = "./backend";  // <--- ADD THIS LINE
+
+service MetricsService {
+  rpc ReportMetrics (stream MetricData) returns (Empty);
+}
+
+message MetricData {
+  string agent_id = 1;
+  double cpu_usage = 2;
+  double ram_usage = 3;
+  int64 timestamp = 4;
+}
+
+message Empty {}
